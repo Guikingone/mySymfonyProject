@@ -1,6 +1,6 @@
 FROM php:fpm
 
-ENV WORKDIR "/var/www/smartfact"
+ENV WORKDIR "/var/www/symfonyFlex"
 
 RUN apt-get update -y \
     && apt-get install -y \

@@ -30,8 +30,6 @@ services:
         container_name: ${CONTAINER_NAME}_php-fpm
         build: './docker/php'
         environment:
-            BLACKFIRE_SERVER_ID: '${BLACKFIRE_SERVER_ID}'
-            BLACKFIRE_SERVER_TOKEN: '${BLACKFIRE_SERVER_TOKEN}'
             WORKDIR: '${WORKDIR}'
         ports:
             - '${PHP_PORT}:9000'
@@ -55,30 +53,6 @@ services:
             - '${MYSQL_PORT}:3306'
         volumes:
             - 'mysql_symfony:/var/lib/mysql'
-        restart: always
-
-    mongodb:
-        container_name: ${CONTAINER_NAME}_mongodb
-        image: mongo
-        ports:
-          - '${MONGO_PORT}:27017'
-        links:
-          - debian
-        volumes:
-          - 'mongo_symfony:/data/db'
-        restart: always
-
-    # Testing configuration
-    blackfire:
-        container_name: ${CONTAINER_NAME}_blackfire
-        image: blackfire/blackfire
-        environment:
-            BLACKFIRE_SERVER_ID: '${BLACKFIRE_SERVER_ID}'
-            BLACKFIRE_SERVER_TOKEN: '${BLACKFIRE_SERVER_TOKEN}'
-        links:
-            - php-fpm
-        volumes:
-            - './:${WORKDIR}:rw'
         restart: always
 
 volumes:

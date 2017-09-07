@@ -4,3 +4,5 @@
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
+
+docker/nginx/logs/
